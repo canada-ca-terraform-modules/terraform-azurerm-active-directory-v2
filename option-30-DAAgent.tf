@@ -6,7 +6,6 @@ resource "azurerm_virtual_machine_extension" "DAAgentForWindowsDC1" {
   type_handler_version       = "9.5"
   auto_upgrade_minor_version = true
   depends_on                 = [azurerm_virtual_machine_extension.createMgmtADForest, azurerm_virtual_machine_extension.addMgmtADSecondaryDC]
-  tags                       = var.tags
 }
 
 resource "azurerm_virtual_machine_extension" "DAAgentForWindowsDC2" {
@@ -17,5 +16,4 @@ resource "azurerm_virtual_machine_extension" "DAAgentForWindowsDC2" {
   type_handler_version       = "9.5"
   auto_upgrade_minor_version = true
   depends_on                 = [azurerm_virtual_machine_extension.createMgmtADForest, azurerm_virtual_machine_extension.addMgmtADSecondaryDC]
-  tags                       = var.tags
 }

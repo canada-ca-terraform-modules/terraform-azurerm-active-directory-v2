@@ -34,8 +34,6 @@ resource "azurerm_virtual_machine_extension" "AzureDiskEncryptionDC1" {
           "ResizeOSDisk": false
         }
   SETTINGS
-
-  tags = var.tags
 }
 
 resource "azurerm_virtual_machine_extension" "AzureDiskEncryptionDC2" {
@@ -59,6 +57,4 @@ resource "azurerm_virtual_machine_extension" "AzureDiskEncryptionDC2" {
           "ResizeOSDisk": false
         }
   SETTINGS
-
-  tags = var.tags
 }
