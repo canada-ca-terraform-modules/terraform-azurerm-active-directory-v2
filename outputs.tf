@@ -11,5 +11,5 @@ output NIC-dc1 {
 }
 
 output NIC-dc2 {
-  value = azurerm_network_interface.NIC-dc1
+  value = azurerm_network_interface.NIC-dc2
 }
