@@ -40,7 +40,7 @@ provider "azurerm" {
 data "azurerm_client_config" "current" {}
 
 module "addsvms" {
-  source = "github.com/canada-ca-terraform-modules/terraform-azurerm-active-directory?ref=20200427.1"
+  source = "github.com/canada-ca-terraform-modules/terraform-azurerm-active-directory?ref=20200427.2"
 
   ad_domain_name        = "mgmt.demo.gc.ca.local"
   reverse_Zone_Object   = "2.250.10"
