@@ -40,7 +40,7 @@ provider "azurerm" {
 data "azurerm_client_config" "current" {}
 
 module "addsvms" {
-  source = "github.com/canada-ca-terraform-modules/terraform-azurerm-active-directory?ref=20200421.1"
+  source = "github.com/canada-ca-terraform-modules/terraform-azurerm-active-directory?ref=20200427.1"
 
   ad_domain_name        = "mgmt.demo.gc.ca.local"
   reverse_Zone_Object   = "2.250.10"
@@ -77,6 +77,7 @@ TO BE DOCUMENTED
 
 | Date     | Release    | Change                                     |
 | -------- | ---------- | ------------------------------------------ |
+| 20200427 | 20200427.1 | Add nic output                             |
 | 20200421 | 20200421.1 | Removing tags from extensions              |
 | 20190806 | 20190806.1 | Add support for custom DNS Server Override |
 | 20190801 | 20190801.1 | Remove unnecessary script step             |
