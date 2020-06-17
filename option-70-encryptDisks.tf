@@ -14,11 +14,12 @@ variable "encryptDisks" {
 }
 
 resource "azurerm_virtual_machine_extension" "AzureDiskEncryptionDC1" {
-
-  count                      = var.encryptDisks == null ? 0 : 1
-  name                       = "AzureDiskEncryptionDC1"
-  depends_on                 = [azurerm_virtual_machine_extension.MicrosoftMonitoringAgentDC1]
-  virtual_machine_id         = azurerm_virtual_machine.dc1.id
+  count = var.encryptDisks != null && var.deploy ? 1 : 0
+  name  = "AzureDiskEncryption"
+  depends_on = [
+    azurerm_virtual_machine_extension.createMgmtADForest
+  ]
+  virtual_machine_id         = module.dc1.vm[0].id
   publisher                  = "Microsoft.Azure.Security"
   type                       = "AzureDiskEncryption"
   type_handler_version       = "2.2"
@@ -37,11 +38,12 @@ resource "azurerm_virtual_machine_extension" "AzureDiskEncryptionDC1" {
 }
 
 resource "azurerm_virtual_machine_extension" "AzureDiskEncryptionDC2" {
-
-  count                      = var.encryptDisks == null ? 0 : 1
-  name                       = "AzureDiskEncryptionDC2"
-  depends_on                 = [azurerm_virtual_machine_extension.MicrosoftMonitoringAgentDC2]
-  virtual_machine_id         = azurerm_virtual_machine.dc2.id
+  count = var.encryptDisks != null && var.deploy ? 1 : 0
+  name  = "AzureDiskEncryption"
+  depends_on = [
+    azurerm_virtual_machine_extension.addMgmtADSecondaryDC
+  ]
+  virtual_machine_id         = module.dc2.vm[0].id
   publisher                  = "Microsoft.Azure.Security"
   type                       = "AzureDiskEncryption"
   type_handler_version       = "2.2"

@@ -2,40 +2,46 @@ variable "location" {
   description = "Location of the network"
   default     = "canadacentral"
 }
-/*
-variable "keyVaultName" {
-  default = "PwS3-Infra-KV-simc2atbrf"
-}
-
-variable "keyVaultResourceGroupName" {
-  default = "PwS3-Infra-Keyvault-RG"
-}
-*/
 
 variable "tags" {
   default = {
-    "Organizations"     = "PwP0-CCC-E&O"
-    "DeploymentVersion" = "2018-12-14-01"
-    "Classification"    = "Unclassified"
-    "Enviroment"        = "Sandbox"
-    "CostCenter"        = "PwP0-EA"
-    "Owner"             = "cloudteam@tpsgc-pwgsc.gc.ca"
   }
 }
 
+variable "deploy" {
+  description = "Should resources in this module be deployed"
+  default     = true
+}
+
+variable "monitoringAgent" {
+  description = "Should the VM be monitored"
+  default     = null
+}
+
+variable "dependancyAgent" {
+  description = "Should the VM be include the dependancy agent"
+  default     = null
+}
+
 variable "ad_domain_name" {
-  default = "mgmt.demo.gc.ca.local"
+  default = "module.local"
 }
 
 variable "reverse_Zone_Object" {
-  default = "2.250.10"
+  default = ["2.250.10"]
 }
 
 variable "ad_prefix" {
   default = "adds"
 }
+
+variable "public_ip" {
+  description = "Should the VM be assigned public IP(s). True or false."
+  default     = false
+}
+
 variable "dnsServers" {
-  default = ""
+  default = ["168.63.129.16"]
 }
 variable "subnetName" {
   default = "PwS3-Shared-PAZ-Openshift-RG"
@@ -47,19 +53,8 @@ variable "vnetName" {
 variable "vnetResourceGroupName" {
   default = "PwS3-Infra-NetShared-RG"
 }
-variable "nic_enable_ip_forwarding" {
-  default = false
-}
-variable "nic_enable_accelerated_networking" {
-  default = false
-}
-variable "rootDC1IPAddress" {
-  default = ""
-}
+variable "rootDC1IPAddress" {}
 
-variable "rootDC1IPAddress_allocation" {
-  default = "Static"
-}
 variable "rootDC2IPAddress" {
   default = ""
 }
@@ -68,7 +63,7 @@ variable "rootDC2IPAddress_allocation" {
   default = "Static"
 }
 
-variable "resourceGroupName" {
+variable "resourceGroup" {
   default = "PwS3-GCInterrop-Openshift"
 }
 
@@ -93,10 +88,6 @@ variable "storage_image_reference" {
   }
 }
 
-variable "storage_os_disk" {
-  default = {
-    caching       = "ReadWrite"
-    create_option = "FromImage"
-    os_type       = "Windows"
-  }
+variable "managed_disk_type" {
+  default = "StandardSSD_LRS"
 }
