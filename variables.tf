@@ -91,3 +91,7 @@ variable "storage_image_reference" {
 variable "managed_disk_type" {
   default = "StandardSSD_LRS"
 }
+
+variable "priority" {
+  default = "Regular"
+}

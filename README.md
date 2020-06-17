@@ -30,8 +30,7 @@ The following security controls can be met through configuration of this templat
 
 ```terraform
 module "SRV-BYOD-adt" {
-  source = "../../modules/terraform-azurerm-active-directory-v2"
-  # source         = "github.com/canada-ca-terraform-modules/terraform-azurerm_linux_virtual_machine?ref=20200612.1"
+  source         = "github.com/canada-ca-terraform-modules/terraform-azurerm_linux_virtual_machine?ref=20200617.2"
   deploy                = true
   ad_prefix             = "${var.env}SRV-BYODA"
   resourceGroup         = azurerm_resource_group.SomeRGObject
@@ -57,8 +56,6 @@ module "SRV-BYOD-adt" {
 }
 ```
 
-## Parameter Values
-
 ## Variables Values
 
 | Name                    | Type   | Required | Value                                                                                                                                                                                          |
@@ -83,8 +80,21 @@ module "SRV-BYOD-adt" {
 | admin_username          | string | yes      | Name of the VM admin account                                                                                                                                                                   |
 | admin_password          | string | yes      | Password of the VM admin account                                                                                                                                                               |
 | vm_size                 | string | yes      | Specifies the desired size of the Virtual Machine. Eg: Standard_F4                                                                                                                             |
+| encryptDisks            | object | no       | Object containing keyvault information for disk encryption. - [encryptDisk](#encryptDisk-object)                                                                                               |
 | storage_image_reference | object | no       | Specify the storage image used to create the VM. Default is 2016-Datacenter. - [storage image](#storage-image-reference-object)                                                                |
 | managed_disk_type       | string | no       | Specify the type of managed storage to use for OS and Data disk. Default: "StandardSSD_LRS"                                                                                                    |
+| priority                | string | no       | Specifies what should happen when the Virtual Machine is evicted for price reasons when using a Spot instance. Possible values are: Regular and Spot. Default: Regular                         |
+
+### encryptDisk object
+
+Example
+
+```
+encryptDisks = {
+  KeyVaultResourceId = azurerm_key_vault.test-keyvault.id
+  KeyVaultURL        = azurerm_key_vault.test-keyvault.vault_uri
+}
+```
 
 ### Tag variable
 
@@ -96,6 +106,7 @@ module "SRV-BYOD-adt" {
 
 ## History
 
-| Date     | Release    | Change                                     |
-| -------- | ---------- | ------------------------------------------ |
-| 20200617 | 20200617.1 | 1st release                                |
+| Date     | Release    | Change                                            |
+| -------- | ---------- | ------------------------------------------------- |
+| 20200617 | 20200617.2 | Add support for Spot instance and disk encryption |
+| 20200617 | 20200617.1 | 1st release                                       |

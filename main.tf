@@ -25,6 +25,7 @@ module "dc1" {
   dnsServers           = var.dnsServers
   admin_username       = var.admin_username
   admin_password       = var.admin_password
+  priority = var.priority
   data_disk_sizes_gb   = [10]
   os_managed_disk_type = var.managed_disk_type
   vm_size              = var.vm_size
@@ -53,6 +54,7 @@ module "dc2" {
   dnsServers           = var.dnsServers
   admin_username       = var.admin_username
   admin_password       = var.admin_password
+  priority = var.priority
   data_disk_sizes_gb   = [10]
   os_managed_disk_type = var.managed_disk_type
   vm_size              = var.vm_size
