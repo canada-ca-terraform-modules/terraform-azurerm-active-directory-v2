@@ -17,7 +17,7 @@ resource "azurerm_virtual_machine_extension" "AzureDiskEncryptionDC1" {
   count = var.encryptDisks != null && var.deploy ? 1 : 0
   name  = "AzureDiskEncryption"
   depends_on = [
-    azurerm_virtual_machine_extension.createMgmtADForest
+    azurerm_virtual_machine_extension.addMgmtADSecondaryDC
   ]
   virtual_machine_id         = module.dc1.vm[0].id
   publisher                  = "Microsoft.Azure.Security"
