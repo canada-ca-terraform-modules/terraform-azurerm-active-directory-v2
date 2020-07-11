@@ -3,5 +3,5 @@ output "dc1" {
 }
 
 output "dc2" {
-  value = azurerm_virtual_machine.dc2
+  value = module.dc2
 }
